@@ -1,17 +1,36 @@
-app:
-  build: .
-  command: ./from_shell.sh
-  #command: /bin/bash
-  #stdin_open: true
-  #tty: true
-  ports:
-    - "4567:4567"
-  volumes:
-    - .:/app
-  volumes_from:
-    - box
+version: '2'
 
-box:
-  image: busybox
-  volumes:
-    - /box
+services:
+  app:
+    build: .
+    command: ./from_shell.sh
+    #command: /bin/bash
+    #stdin_open: true
+    #tty: true
+    ports:
+      - "4567:4567"
+    volumes:
+      - .:/app
+    volumes_from:
+      - box
+    depends_on:
+      - db
+
+  box:
+    image: busybox
+    volumes:
+      - /box
+
+  db:
+    image:  mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./raw:/var/lib/raw
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_legacy
+
+volumes:
+  box:
