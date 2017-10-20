@@ -1,0 +1,15 @@
+app:
+  build: .
+  command: ./from_shell.sh
+  #command: /bin/bash
+  #stdin_open: true
+  #tty: true
+  volumes:
+    - .:/app
+  volumes_from:
+    - box
+
+box:
+  image: busybox
+  volumes:
+    - /box
