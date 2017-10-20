@@ -4,6 +4,8 @@ app:
   #command: /bin/bash
   #stdin_open: true
   #tty: true
+  ports:
+    - "4567:4567"
   volumes:
     - .:/app
   volumes_from:
