@@ -1,5 +1,5 @@
 source 'https://rubygems.org' do
-  gem 'mysql'
+  gem 'mysql2'
   gem 'sinatra'
-  gem 'sinatra-contrib'  
+  gem 'sinatra-contrib'
 end
